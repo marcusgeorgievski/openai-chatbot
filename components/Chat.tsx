@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import ChatHeader from "./ChatHeader";
 import ChatInput from "./ChatInput";
+import ChatMessages from "./ChatMessages";
 
 export default function Chat() {
 	return (
@@ -23,7 +24,7 @@ export default function Chat() {
 
 						<AccordionContent>
 							<div className="flex flex-col h-80">
-								messages
+								<ChatMessages className="" />
 								<ChatInput className="px-4" />
 							</div>
 						</AccordionContent>

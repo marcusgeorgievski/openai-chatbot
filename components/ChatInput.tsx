@@ -1,15 +1,25 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { FC, HTMLAttributes, useState } from "react";
+import { FC, HTMLAttributes, useContext, useRef, useState } from "react";
 import { useMutation } from "react-query";
 import TextAreaAutosize from "react-textarea-autosize";
 import { nanoid } from "nanoid";
 import { Message } from "@/lib/validators/message";
+import { MessagesContext } from "@/context/messages";
 
 interface ChatInputProps extends HTMLAttributes<HTMLDivElement> {}
 
 export default function ChatInput({ className, ...props }: ChatInputProps) {
 	const [input, setInput] = useState<string>("");
+	const {
+		messages,
+		addMessage,
+		updateMessage,
+		removeMessage,
+		setIsMessageUpdating,
+	} = useContext(MessagesContext);
+
+	const textareaRef = useRef<HTMLTextAreaElement>(null);
 
 	const { mutate: sendMessage, isLoading } = useMutation({
 		mutationFn: async (message: Message) => {
@@ -23,8 +33,21 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
 
 			return response.body;
 		},
+		onMutate: (message: Message) => {
+			addMessage(message);
+		},
 		onSuccess: async (stream) => {
 			if (!stream) throw new Error("No stream found");
+
+			const id = nanoid();
+			const responseMessage: Message = {
+				id,
+				text: "",
+				isUserInput: false,
+			};
+
+			addMessage(responseMessage);
+			setIsMessageUpdating(true);
 
 			const reader = stream.getReader();
 			const decoder = new TextDecoder();
@@ -35,11 +58,17 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
 				done = doneReading;
 				const chunkValue = decoder.decode(value);
 
-				// console.log(chunkValue);
+				console.log(chunkValue);
+				updateMessage(id, (prevText) => prevText + chunkValue);
 			}
 
-			console.log("success: ", stream);
+			// clean up
+			setIsMessageUpdating(false);
 			setInput("");
+
+			setTimeout(() => {
+				textareaRef.current?.focus();
+			}, 10);
 		},
 	});
 
@@ -47,6 +76,7 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
 		<div {...props} className={cn("border-t border-slate-300", className)}>
 			<div className="relative flex-1 mt-4 overflow-hidden border-none rounded-lg outline-none">
 				<TextAreaAutosize
+					ref={textareaRef}
 					value={input}
 					onChange={(e) => setInput(e.target.value)}
 					onKeyDown={(e) => {
