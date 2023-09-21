@@ -72,7 +72,9 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
 	});
 
 	const handleFocus = () => {
-		textareaRef.current?.scrollIntoView({ behavior: "smooth" });
+		setTimeout(() => {
+			textareaRef.current?.scrollIntoView({ behavior: "smooth" });
+		}, 100);
 	};
 
 	return (
