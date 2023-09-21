@@ -1,4 +1,4 @@
-### book-data.ts
+### plant-data.ts
 
 -   Website metadata to provide to bot
 

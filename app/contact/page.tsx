@@ -6,7 +6,7 @@ export default function Contact() {
 		<div className="">
 			<h2 className="mb-4 text-3xl font-bold">Contact</h2>
 
-			<p className="flex items-center gap-2 mt-4">
+			<p className="flex items-center mt-4 gap-2">
 				👨‍💻 GitHub:{" "}
 				<span className="font-medium text-blue-700 hover:underline">
 					<Link

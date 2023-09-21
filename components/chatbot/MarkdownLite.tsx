@@ -21,7 +21,7 @@ const MarkdownLite = ({ text }: { text: string }) => {
 			<Link
 				target="_blank"
 				rel="noopener noreferrer"
-				className="break-words underline underline-offset-2 text-blue-600"
+				className="text-blue-600 underline break-words underline-offset-2"
 				key={linkUrl}
 				href={linkUrl}
 			>

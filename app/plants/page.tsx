@@ -15,7 +15,7 @@ export default function Plants() {
 						<Link
 							href={`/plants/${plant.id}`}
 							key={plant.id}
-							className="p-2 border rounded-md shadow border-slate-200 hover:bg-slate-50"
+							className="p-2 border shadow rounded-md border-slate-200 hover:bg-slate-50"
 						>
 							<img
 								src={plant.image}
