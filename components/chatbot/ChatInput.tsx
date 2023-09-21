@@ -21,7 +21,7 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
 
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-	const { mutate: sendMessage, isLoading } = useMutation({
+	const { mutate: sendMessage } = useMutation({
 		mutationFn: async (message: Message) => {
 			const response = await fetch("/api/message", {
 				method: "POST",
@@ -64,13 +64,16 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
 
 			// clean up
 			setIsMessageUpdating(false);
-			setInput("");
 
 			setTimeout(() => {
 				textareaRef.current?.focus();
 			}, 10);
 		},
 	});
+
+	const handleFocus = () => {
+		textareaRef.current?.scrollIntoView({ behavior: "smooth" });
+	};
 
 	return (
 		<div {...props} className={cn("border-t border-slate-300", className)}>
@@ -90,6 +93,7 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
 							};
 
 							sendMessage(message);
+							setInput("");
 						}
 					}}
 					rows={2}

@@ -26,14 +26,17 @@ export default function Home() {
 					Ask about <Typer />
 				</p>
 
-				<p className="text-lg text-slate-700">
+				<p className="text-slate-700 text-xs">
 					{"-> "}
 					<Link
 						href="/plants"
-						className="text-blue-600 underline underline-offset-2"
+						className="text-blue-600 underline underline-offset-2 "
 					>
-						plants
+						plants here
 					</Link>
+				</p>
+				<p className=" text-slate-700 text-xs">
+					{"-> "} chatbot styling not optimized for mobile yet
 				</p>
 			</div>
 		</div>

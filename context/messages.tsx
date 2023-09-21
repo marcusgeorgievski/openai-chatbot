@@ -24,7 +24,7 @@ export function MessagesProvider({ children }: { children: React.ReactNode }) {
 	const [messages, setMessages] = useState<Message[]>([
 		{
 			id: nanoid(),
-			text: "Hello, how can I help you today?",
+			text: `Hi! How can I help you today?`,
 			isUserInput: false,
 		},
 	]);

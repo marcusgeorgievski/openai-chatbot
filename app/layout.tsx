@@ -10,6 +10,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
 	title: "Chatbot Demo",
 	description: "OpenAI GPT-3 chatbot demo",
+	viewport: {
+		width: "device-width",
+		initialScale: 1,
+		maximumScale: 1,
+	},
 };
 
 export default function RootLayout({
