@@ -239,7 +239,7 @@ This can be done by using the built-in Next.js sitemap
 generate, or other generators online. You can use a static
 json array or dynamically create one from a database query.
 </content>
-    <url>/</url>
+    <url>/about</url>
   </page>
   <page>
     <page>Contact</page>
@@ -249,7 +249,15 @@ json array or dynamically create one from a database query.
       <phone>555-555-5555</phone>
       <email>plantshopowner@plant.com</email>
     </content>
-    <url>/</url>
+    <url>/contact</url>
+  </page>
+  <page>
+    <page>Plants</page>
+    <description>Plant page that lists all plants</description>
+    <content>
+      This page contains the plants and a brief overview of each one. Direct the user to here to view plants
+    </content>
+    <url>/plants</url>
   </page>
 </root>
 `;
