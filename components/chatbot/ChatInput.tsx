@@ -96,6 +96,7 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
 							setInput("");
 						}
 					}}
+					onFocus={handleFocus}
 					rows={2}
 					maxRows={4}
 					autoFocus
