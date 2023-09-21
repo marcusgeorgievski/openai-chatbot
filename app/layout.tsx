@@ -1,8 +1,9 @@
-import Chat from "@/components/Chat";
+import Chat from "@/components/chatbot/Chat";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Providers from "@/components/Providers";
+import Providers from "@/components/chatbot/Providers";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +21,11 @@ export default function RootLayout({
 		<html lang="en">
 			<Providers>
 				<body className={inter.className}>
+					<Header />
+					<main className="max-w-[1000px] mx-auto px-4 py-8">
+						{children}
+					</main>
 					<Chat />
-					{children}
 				</body>
 			</Providers>
 		</html>

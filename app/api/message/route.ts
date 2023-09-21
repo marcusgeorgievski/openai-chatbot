@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 		top_p: 1, // diversity
 		frequency_penalty: 0, // repetition of certain words
 		presence_penalty: 0, // repetition of words in msg to res ratio or smth
-		max_tokens: 150, // max words
+		max_tokens: 2000, // max words
 		stream: true, // allows readble stream
 		n: 1, // number of responses
 	};
